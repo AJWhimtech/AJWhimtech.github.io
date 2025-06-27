@@ -1,6 +1,4 @@
-# Ajwhimtech
-App development
-markdown# AJ Whimtech LLC
+AJ Whimtech LLC
 
 Official website for AJ Whimtech LLC - Mobile app development and software solutions.
 
