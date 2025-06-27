@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJ Whimtech LLC - Innovative Mobile App Development</title>
+    <meta name="description" content="AJ Whimtech LLC specializes in innovative mobile application development, combining creativity with cutting-edge technology.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(1deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.3)); }
+            to { filter: drop-shadow(0 0 30px rgba(78, 205, 196, 0.3)); }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+            background: white;
+            margin: 20px 0;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-features {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateX(10px);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .project-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        /* Legal Pages Styles */
+        .legal-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.8;
+        }
+
+        .legal-content h2 {
+            color: #667eea;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .legal-content h3 {
+            color: #764ba2;
+            margin: 1.5rem 0 0.5rem 0;
+        }
+
+        /* Hide legal sections by default */
+        .legal-section {
+            display: none;
+        }
+
+        .legal-section.active, #home.active {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="#" class="logo" onclick="showSection('home')">AJ Whimtech</a>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showSection('home')">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" onclick="showSection('privacy')">Privacy</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="home" class="active">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>AJ Whimtech</h1>
+                <p>Innovative Mobile App Development & Creative Technology Solutions</p>
+                <a href="#projects" class="cta-button">Explore Our Work</a>
+            </div>
+        </section>
+
+        <section id="about" class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>AJ Whimtech LLC is a cutting-edge mobile application development company based in Ohio. We specialize in creating innovative, user-friendly applications that blend creativity with robust functionality.</p>
+                    <p>Our mission is to transform imaginative ideas into powerful digital solutions that make a real impact in people's lives. From concept to deployment, we handle every aspect of app development with precision and passion.</p>
+                </div>
+                <div class="about-features">
+                    <div class="feature">
+                        <div class="feature-icon">📱</div>
+                        <div>
+                            <h3>Mobile-First Design</h3>
+                            <p>Responsive, intuitive apps for iOS and Android</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🚀</div>
+                        <div>
+                            <h3>Innovation Driven</h3>
+                            <p>Cutting-edge technology meets creative problem-solving</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">⚡</div>
+                        <div>
+                            <h3>Rapid Development</h3>
+                            <p>Agile methodology for faster time-to-market</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="container">
+            <h2 class="section-title">Current Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>🚀 Rocket Cake Truck App</h3>
+                    <p>An innovative mobile application combining the excitement of rocket building with the artistry of cake design. Users can create, customize, and share their unique rocket-cake creations in an interactive digital environment.</p>
+                    <p><strong>Status:</strong> In Development</p>
+                    <p><strong>Platform:</strong> iOS, Android</p>
+                </div>
+                <div class="project-card">
+                    <h3>🔧 Custom App Solutions</h3>
+                    <p>We develop bespoke mobile applications tailored to your specific business needs. From concept to deployment, we create solutions that drive engagement and deliver results.</p>
+                    <p><strong>Services:</strong> Consultation, Design, Development, Deployment</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <p>Ready to bring your app idea to life? Let's discuss how AJ Whimtech can help transform your vision into a powerful mobile application.</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>🏢 Business</h3>
+                        <p>AJ Whimtech LLC<br>Ohio, USA</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>📧 Email</h3>
+                        <p>info@ajwhimtech.com<br>(Business Inquiries)</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>💼 Services</h3>
+                        <p>Mobile App Development<br>Custom Software Solutions</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Privacy Policy Section -->
+    <div id="privacy" class="legal-section">
+        <section class="container">
+            <div class="legal-content">
+                <h1>Privacy Policy</h1>
+                <p><strong>Effective Date:</strong> June 27, 2025</p>
+                <p><strong>Last Updated:</strong> June 27, 2025</p>
+
+                <h2>1. Information We Collect</h2>
+                <p>AJ Whimtech LLC ("we," "us," or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our mobile applications.</p>
+
+                <h3>Personal Information</h3>
+                <ul>
+                    <li>Account information (username, email address)</li>
+                    <li>Profile information you choose to provide</li>
+                    <li>User-generated content (designs, creations, comments)</li>
+                </ul>
+
+                <h3>Usage Information</h3>
+                <ul>
+                    <li>App usage statistics and analytics</li>
+                    <li>Device information (device type, operating system)</li>
+                    <li>Performance and crash data</li>
+                </ul>
+
+                <h2>2. How We Use Your Information</h2>
+                <ul>
+                    <li>Provide and improve our app services</li>
+                    <li>Personalize your app experience</li>
+                    <li>Communicate with you about updates and features</li>
+                    <li>Ensure app security and prevent fraud</li>
+                    <li>Analyze usage patterns to improve functionality</li>
+                </ul>
+
+                <h2>3. Information Sharing</h2>
+                <p>We do not sell, trade, or rent your personal information to third parties. We may share information only in the following circumstances:</p>
+                <ul>
+                    <li>With your explicit consent</li>
+                    <li>To comply with legal obligations</li>
+                    <li>To protect our rights and safety</li>
+                    <li>With service providers who assist in app operations (under strict confidentiality agreements)</li>
+                </ul>
+
+                <h2>4. Data Security</h2>
+                <p>We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+
+                <h2>5. Your Rights</h2>
+                <p>You have the right to:</p>
+                <ul>
+                    <li>Access your personal information</li>
+                    <li>Correct inaccurate information</li>
+                    <li>Delete your account and associated data</li>
+                    <li>Opt-out of communications</li>
+                </ul>
+
+                <h2>6. Children's Privacy</h2>
+                <p>Our apps are not intended for children under 13. We do not knowingly collect personal information from children under 13.</p>
+
+                <h2>7. Contact Us</h2>
+                <p>If you have questions about this Privacy Policy, please contact us at:</p>
+                <p>AJ Whimtech LLC<br>
+                Email: privacy@ajwhimtech.com<br>
+                Ohio, USA</p>
+
+                <h2>8. Changes to This Policy</h2>
+                <p>We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new Privacy Policy on this page and updating the "Last Updated" date.</p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Terms of Service Section -->
+    <div id="terms" class="legal-section">
+        <section class="container">
+            <div class="legal-content">
+                <h1>Terms of Service</h1>
+                <p><strong>Effective Date:</strong> June 27, 2025</p>
+                <p><strong>Last Updated:</strong> June 27, 2025</p>
+
+                <h2>1. Acceptance of Terms</h2>
+                <p>By accessing or using AJ Whimtech LLC applications ("Service"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of these terms, you may not access the Service.</p>
+
+                <h2>2. Description of Service</h2>
+                <p>AJ Whimtech provides mobile applications for creative design and entertainment purposes. Our services include but are not limited to interactive design tools, sharing features, and community functionality.</p>
+
+                <h2>3. User Accounts</h2>
+                <ul>
+                    <li>You must provide accurate and complete information when creating an account</li>
+                    <li>You are responsible for maintaining the security of your account</li>
+                    <li>You must be at least 13 years old to create an account</li>
+                </ul>
+
+                <h2>4. User Content</h2>
+                <ul>
+                    <li>You retain ownership of content you create using our apps</li>
+                    <li>You grant us a license to use, display, and distribute your content within the app</li>
+                    <li>You are responsible for ensuring your content doesn't violate third-party rights</li>
+                </ul>
+
+                <h2>5. Prohibited Uses</h2>
+                <p>You may not use our Service to:</p>
+                <ul>
+                    <li>Violate any laws or regulations</li>
+                    <li>Infringe on intellectual property rights</li>
+                    <li>Upload malicious code or content</li>
+                    <li>Harass or harm other users</li>
+                    <li>Attempt to gain unauthorized access to our systems</li>
+                </ul>
+
+                <h2>6. Limitation of Liability</h2>
+                <p>AJ Whimtech LLC shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of the Service.</p>
+
+                <h2>7. Termination</h2>
+                <p>We may terminate or suspend your account and access to the Service at our sole discretion, without prior notice, for conduct that we believe violates these Terms.</p>
+
+                <h2>8. Contact Information</h2>
+                <p>Questions about these Terms should be sent to us at:</p>
+                <p>AJ Whimtech LLC<br>
+                Email: legal@ajwhimtech.com<br>
+                Ohio, USA</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AJ Whimtech LLC. All rights reserved. | 
+            <a href="#" onclick="showSection('privacy')" style="color: #4ecdc4;">Privacy Policy</a> | 
+            <a href="#" onclick="showSection('terms')" style="color: #4ecdc4;">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.getElementById('home').classList.remove('active');
+            document.querySelectorAll('.legal-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            if (sectionId === 'home') {
+                document.getElementById('home').classList.add('active');
+            } else {
+                document.getElementById(sectionId).classList.add('active');
+            }
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target && !this.getAttribute('onclick')) {
+                    e.preventDefault();
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(15px)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.1)';
+                header.style.backdropFilter = 'blur(10px)';
+            }
+        });
+    </script>
+</body>
+</html>
