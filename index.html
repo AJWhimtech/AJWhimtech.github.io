@@ -370,6 +370,40 @@
             .legal-content {
                 padding: 1rem;
             }
+            /* Add these new styles to your existing CSS */
+
+            /* Back to home button for legal pages */
+            .back-to-home {
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+                color: white;
+                padding: 10px 20px;
+                border-radius: 25px;
+                text-decoration: none;
+                font-weight: bold;
+                z-index: 1000;
+                transition: all 0.3s ease;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+            
+            .back-to-home:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            }
+            
+            /* Adjust legal content for full-page display */
+            .legal-section.active {
+                min-height: 100vh;
+                background: white;
+                padding-top: 80px;
+            }
+            
+            .legal-section.active .legal-content {
+                padding: 2rem;
+                max-width: 1000px;
+            }
         }
     </style>
 </head>
@@ -469,7 +503,8 @@
     </div>
 
     <!-- Enhanced Privacy Policy Section -->
-    <div id="privacy" class="legal-section">
+      <div id="privacy" class="legal-section">
+        <a href="#" onclick="goHome()" class="back-to-home">← Back to Home</a>
         <section class="container">
             <div class="legal-content">
                 <h1>Privacy Policy</h1>
@@ -621,7 +656,8 @@
     </div>
 
     <!-- Terms of Service Section -->
-    <div id="terms" class="legal-section">
+       <div id="terms" class="legal-section">
+        <a href="#" onclick="goHome()" class="back-to-home">← Back to Home</a>
         <section class="container">
             <div class="legal-content">
                 <h1>Terms of Service</h1>
@@ -674,49 +710,60 @@
     </footer>
 
     <script>
-        function showSection(sectionId) {
-            // Hide all sections
-            document.getElementById('home').classList.remove('active');
-            document.querySelectorAll('.legal-section').forEach(section => {
-                section.classList.remove('active');
+function showSection(sectionId) {
+    // Hide all sections
+    document.getElementById('home').classList.remove('active');
+    document.querySelectorAll('.legal-section').forEach(section => {
+        section.classList.remove('active');
+    });
+    
+    // Show selected section
+    if (sectionId === 'home') {
+        document.getElementById('home').classList.add('active');
+        // Show header and footer for home page
+        document.querySelector('header').style.display = 'block';
+        document.querySelector('footer').style.display = 'block';
+    } else {
+        document.getElementById(sectionId).classList.add('active');
+        // Hide header and footer for legal pages
+        document.querySelector('header').style.display = 'none';
+        document.querySelector('footer').style.display = 'none';
+    }
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Add this new function to handle back to home navigation
+function goHome() {
+    showSection('home');
+}
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target && !this.getAttribute('onclick')) {
+            e.preventDefault();
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
             });
-            
-            // Show selected section
-            if (sectionId === 'home') {
-                document.getElementById('home').classList.add('active');
-            } else {
-                document.getElementById(sectionId).classList.add('active');
-            }
-            
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+    });
+});
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target && !this.getAttribute('onclick')) {
-                    e.preventDefault();
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.backdropFilter = 'blur(15px)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.1)';
-                header.style.backdropFilter = 'blur(10px)';
-            }
-        });
+// Header scroll effect
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 100) {
+        header.style.background = 'rgba(255, 255, 255, 0.95)';
+        header.style.backdropFilter = 'blur(15px)';
+    } else {
+        header.style.background = 'rgba(255, 255, 255, 0.1)';
+        header.style.backdropFilter = 'blur(10px)';
+    }
+});
     </script>
 </body>
 </html>
