@@ -373,6 +373,9 @@
             /* Add these new styles to your existing CSS */
 
             /* Back to home button for legal pages */
+         /* Add these new styles to your existing CSS */
+
+            /* Back to home button for legal pages */
             .back-to-home {
                 position: fixed;
                 top: 20px;
@@ -393,16 +396,28 @@
                 box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             }
             
-            /* Adjust legal content for full-page display */
+            /* Legal sections take full viewport */
             .legal-section.active {
-                min-height: 100vh;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
                 background: white;
+                z-index: 999;
+                overflow-y: auto;
                 padding-top: 80px;
+            }
+            
+            .legal-section.active .container {
+                max-width: 1000px;
+                margin: 0 auto;
+                padding: 0 20px;
             }
             
             .legal-section.active .legal-content {
                 padding: 2rem;
-                max-width: 1000px;
+                max-width: 100%;
             }
         }
     </style>
@@ -723,11 +738,15 @@ function showSection(sectionId) {
         // Show header and footer for home page
         document.querySelector('header').style.display = 'block';
         document.querySelector('footer').style.display = 'block';
+        // Show body background gradient
+        document.body.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
     } else {
         document.getElementById(sectionId).classList.add('active');
         // Hide header and footer for legal pages
         document.querySelector('header').style.display = 'none';
         document.querySelector('footer').style.display = 'none';
+        // Set body background to white for legal pages
+        document.body.style.background = 'white';
     }
     
     // Scroll to top
