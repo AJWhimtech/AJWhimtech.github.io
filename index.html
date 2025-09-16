@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,766 +13,438 @@
             box-sizing: border-box;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
+```
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
 
-        /* Header */
-        header {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
+    /* Header */
+    header {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        transition: all 0.3s ease;
+    }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+    }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: white;
-            text-decoration: none;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+    .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
 
+    .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+    }
+
+    .nav-links a {
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        padding: 0.5rem 1rem;
+        border-radius: 25px;
+    }
+
+    .nav-links a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+        animation: float 20s ease-in-out infinite;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(1deg); }
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+        from { filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.3)); }
+        to { filter: drop-shadow(0 0 30px rgba(78, 205, 196, 0.3)); }
+    }
+
+    .hero p {
+        font-size: 1.3rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+    }
+
+    .cta-button {
+        display: inline-block;
+        padding: 15px 40px;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Sections */
+    section {
+        padding: 80px 0;
+        background: white;
+        margin: 20px 0;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+    }
+
+    .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        color: #333;
+        position: relative;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        border-radius: 2px;
+    }
+
+    /* About Section */
+    .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+    }
+
+    .about-text {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+
+    .about-features {
+        display: grid;
+        gap: 1.5rem;
+    }
+
+    .feature {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        border-radius: 15px;
+        transition: transform 0.3s ease;
+    }
+
+    .feature:hover {
+        transform: translateX(10px);
+    }
+
+    .feature-icon {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+    }
+
+    /* Projects Section */
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .project-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 2rem;
+        border-radius: 20px;
+        transition: transform 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .project-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+        transform: translateX(-100%);
+        transition: transform 0.6s ease;
+    }
+
+    .project-card:hover::before {
+        transform: translateX(100%);
+    }
+
+    .project-card:hover {
+        transform: translateY(-10px);
+    }
+
+    .project-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Contact Section */
+    .contact-content {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .contact-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .contact-item {
+        padding: 2rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border-radius: 15px;
+        transition: transform 0.3s ease;
+    }
+
+    .contact-item:hover {
+        transform: scale(1.05);
+    }
+
+    /* Footer */
+    footer {
+        background: #333;
+        color: white;
+        text-align: center;
+        padding: 2rem 0;
+        margin-top: 4rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
         .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-        }
-
-        .nav-links a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(1deg); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes glow {
-            from { filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.3)); }
-            to { filter: drop-shadow(0 0 30px rgba(78, 205, 196, 0.3)); }
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 15px 40px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        /* Sections */
-        section {
-            padding: 80px 0;
-            background: white;
-            margin: 20px 0;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #333;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            border-radius: 2px;
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        .about-features {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 15px;
-            transition: transform 0.3s ease;
-        }
-
-        .feature:hover {
-            transform: translateX(10px);
-        }
-
-        .feature-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 2rem;
-            border-radius: 20px;
-            transition: transform 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-
-        .project-card:hover::before {
-            transform: translateX(100%);
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .project-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Contact Section */
-        .contact-content {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact-info {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .contact-item {
-            padding: 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 15px;
-            transition: transform 0.3s ease;
-        }
-
-        .contact-item:hover {
-            transform: scale(1.05);
-        }
-
-        /* Footer */
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-top: 4rem;
-        }
-
-        /* Legal Pages Styles */
-        .legal-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem;
-            line-height: 1.8;
-        }
-
-        .legal-content h1 {
-            color: #667eea;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-        }
-
-        .legal-content h2 {
-            color: #667eea;
-            margin: 2rem 0 1rem 0;
-            font-size: 1.5rem;
-        }
-
-        .legal-content h3 {
-            color: #764ba2;
-            margin: 1.5rem 0 0.5rem 0;
-            font-size: 1.2rem;
-        }
-
-        .legal-content ul {
-            margin: 1rem 0;
-            padding-left: 2rem;
-        }
-
-        .legal-content li {
-            margin: 0.5rem 0;
-        }
-
-        .privacy-highlight {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 1.5rem;
-            border-radius: 15px;
-            margin: 1.5rem 0;
-            border-left: 4px solid #667eea;
-        }
-
-        /* Hide legal sections by default */
-        .legal-section {
             display: none;
         }
 
-        .legal-section.active, #home.active {
-            display: block;
+        .hero h1 {
+            font-size: 2.5rem;
         }
-            /* Back to home button for legal pages */
-         /* Add these new styles to your existing CSS */
 
-            /* Back to home button for legal pages */
-        .back-to-home {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            z-index: 1000;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        .about-content {
+            grid-template-columns: 1fr;
+            gap: 2rem;
         }
-            
-        .back-to-home:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-        /* Legal sections take full viewport */
-        .legal-section.active {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: white;
-            z-index: 999;
-            overflow-y: auto;
-            padding-top: 80px;
-        }
-        
-        .legal-section.active .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        .legal-section.active .legal-content {
-            padding: 2rem;
-            max-width: 100%;
-        }
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
 
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .contact-info {
-                grid-template-columns: 1fr;
-            }
-
-            .legal-content {
-                padding: 1rem;
-            }
-            
+        .contact-info {
+            grid-template-columns: 1fr;
         }
-    </style>
+    }
+</style>
+```
+
 </head>
 <body>
     <header>
         <nav class="container">
-            <a href="#" class="logo" onclick="showSection('home')">AJ Whimtech</a>
+            <a href="#" class="logo">AJ Whimtech</a>
             <ul class="nav-links">
-                <li><a href="#" onclick="showSection('home')">Home</a></li>
+                <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="#" onclick="showSection('privacy')">Privacy</a></li>
+                <li><a href="privacy-policy.html">Privacy</a></li>
             </ul>
         </nav>
     </header>
 
-    <div id="home" class="active">
-        <section class="hero">
-            <div class="hero-content">
-                <h1>AJ Whimtech</h1>
-                <p>Innovative Mobile App Development & Creative Technology Solutions</p>
-                <a href="#projects" class="cta-button">Explore Our Work</a>
-            </div>
-        </section>
-
-        <section id="about" class="container">
-            <h2 class="section-title">About Us</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>AJ Whimtech LLC is an Ohio-based company currently specializing in mobile app development.</p>
-                    <p>Our mission is to transform imaginative ideas into reality.</p>
-                </div>
-                <div class="about-features">
-                    <div class="feature">
-                        <div class="feature-icon">📱</div>
-                        <div>
-                            <h3>Mobile-First Design</h3>
-                            <p>Responsive, intuitive apps for iOS and Android</p>
-                        </div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">🚀</div>
-                        <div>
-                            <h3>Innovation Driven</h3>
-                            <p>A fresh and simple approach</p>
-                        </div>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">⚡</div>
-                        <div>
-                            <h3>Back to the Basics</h3>
-                            <p>Easy and fun applications for kids</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="container">
-            <h2 class="section-title">Current Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>🚀 RocketCake App</h3>
-                    <p>An innovative mobile application where users can use simple shapes to create and customize a variety of rockets, construction vehicles, or cakes.</p>
-                    <p><strong>Status:</strong> In Development</p>
-                    <p><strong>Platform:</strong> iOS, Android</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <h3>🏢 Business</h3>
-                        <p>AJ Whimtech LLC<br>Ohio, USA</p>
-                    </div>
-                    <div class="contact-item">
-                        <h3>📧 Email</h3>
-                        <p>AJWhimtech@gmail.com<br>(Business Inquiries)</p>
-                    </div>
-                    <div class="contact-item">
-                        <h3>💼 Services</h3>
-                        <p>Mobile App Development</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+```
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1>AJ Whimtech</h1>
+        <p>Innovative Mobile App Development & Creative Technology Solutions</p>
+        <a href="#projects" class="cta-button">Explore Our Work</a>
     </div>
+</section>
 
-    <!-- Enhanced Privacy Policy Section -->
-      <div id="privacy" class="legal-section">
-        <a href="#" onclick="goHome()" class="back-to-home">← Back to Home</a>
-        <section class="container">
-            <div class="legal-content">
-                <h1>Privacy Policy</h1>
-                <p><strong>Effective Date:</strong> July 8, 2025</p>
-                <p><strong>Last Updated:</strong> July 8, 2025</p>
-
-                <div class="privacy-highlight">
-                    <h3>🔒 Our Privacy-First Promise</h3>
-                    <p>AJ Whimtech LLC is committed to protecting your privacy. Our apps are designed with privacy as a core feature - we intentionally minimize data collection and prioritize your digital privacy.</p>
-                </div>
-
-                <h2>Interpretation and Definitions</h2>
-                
-                <h3>Definitions</h3>
-                <p>For the purposes of this Privacy Policy:</p>
-                <ul>
-                    <li><strong>"Company"</strong> (referred to as either "the Company", "we", "us" or "our" in this Agreement) refers to AJ Whimtech LLC, Ohio, USA.</li>
-                    <li><strong>"Device"</strong> means any device that can access the Service such as a computer, a cell phone or a digital tablet.</li>
-                    <li><strong>"Personal Data"</strong> is any information that relates to an identified or identifiable individual.</li>
-                    <li><strong>"Service"</strong> refers to our mobile applications and website.</li>
-                    <li><strong>"Usage Data"</strong> refers to data collected automatically, either generated by the use of the Service or from the Service infrastructure itself.</li>
-                    <li><strong>"You"</strong> means the individual accessing or using the Service.</li>
-                </ul>
-
-                <h2>Information We Collect and Use</h2>
-
-                <div class="privacy-highlight">
-                    <h3>What We Do NOT Collect</h3>
-                    <ul>
-                        <li>No account creation or login required</li>
-                        <li>No personal information (names, emails, addresses, phone numbers)</li>
-                        <li>No user-generated content stored on our servers</li>
-                        <li>No behavioral tracking or analytics</li>
-                        <li>No location data or geolocation information</li>
-                        <li>No biometric information</li>
-                        <li>No financial or payment information</li>
-                    </ul>
-                </div>
-
-                <h3>Limited Technical Information We May Collect</h3>
-                <p>We may automatically receive minimal technical information necessary for app functionality and improvement:</p>
-                <ul>
-                    <li><strong>Crash Reports:</strong> Basic technical data to identify and fix bugs (no personal information included)</li>
-                    <li><strong>App Store Analytics:</strong> General usage statistics provided by app stores (download counts, general device types)</li>
-                    <li><strong>Device Information:</strong> Basic device type and operating system version (for compatibility purposes only)</li>
-                </ul>
-
-                <h3>Tracking Technologies and Cookies</h3>
-                <p>Our mobile applications do not use cookies or similar tracking technologies. Our website may use minimal cookies for basic functionality:</p>
-                <ul>
-                    <li><strong>Essential Cookies:</strong> Required for website functionality (session management)</li>
-                    <li><strong>No Tracking Cookies:</strong> We do not use cookies for tracking, analytics, or advertising</li>
-                </ul>
-
-                <h2>How We Use Information</h2>
-                <p>The limited technical information we may collect is used solely for:</p>
-                <ul>
-                    <li>Maintaining and improving app functionality and stability</li>
-                    <li>Fixing bugs and technical issues</li>
-                    <li>Understanding general usage patterns to improve user experience</li>
-                    <li>Ensuring app compatibility across different devices</li>
-                </ul>
-
-                <h2>Information Sharing and Disclosure</h2>
-                <p>Since we don't collect personal information, there is minimal information to share. We do not sell, trade, or rent any user information. Limited technical data may be shared only in these circumstances:</p>
-                <ul>
-                    <li><strong>Service Providers:</strong> Third-party services that help us operate our apps (crash reporting services, app stores)</li>
-                    <li><strong>Legal Requirements:</strong> If required by law or to respond to valid legal requests</li>
-                    <li><strong>Business Transfers:</strong> In the event of a merger or acquisition (though no personal data would be transferred)</li>
-                </ul>
-
-                <h2>Data Retention</h2>
-                <p>We retain minimal technical data only as long as necessary:</p>
-                <ul>
-                    <li>Crash reports: Retained to resolve any underlying issues with the applications</li>
-                    <li>App store analytics: As provided by app store platforms</li>
-                    <li>Support communications: Retained as needed for customer communication</li>
-                </ul>
-
-                <h2>Data Security</h2>
-                <p>We implement appropriate technical and organizational measures to protect any information we might receive against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the Internet is 100% secure.</p>
-
-                <h2>Children's Privacy (COPPA Compliance)</h2>
-                <div class="privacy-highlight">
-                    <h3>Special Protection for Young Children</h3>
-                    <p>Our apps are specifically designed for young children although anyone can enjoy them. We provide enhanced privacy protection:</p>
-                    <ul>
-                        <li>Zero data collection from children of any age</li>
-                        <li>No account creation, registration, or personal information required</li>
-                        <li>No communication features or ability to share information online</li>
-                        <li>All app content and creations remain on the device</li>
-                        <li>No advertising or third-party content</li>
-                        <li>Parents can safely allow use without privacy concerns</li>
-                    </ul>
-                    <p>We fully comply with the Children's Online Privacy Protection Act (COPPA) by design - we simply don't collect any personal information from users of any age.</p>
-                </div>
-
-                <h2>Your Privacy Rights</h2>
-                <p>Since we don't collect personal information, most data rights don't apply. However:</p>
-                <ul>
-                    <li><strong>Data Portability:</strong> All app content is stored locally on your device and belongs to you</li>
-                    <li><strong>Deletion:</strong> Uninstalling the app removes all local data</li>
-                    <li><strong>Access:</strong> You can contact us for information about any support communications</li>
-                    <li><strong>Opt-out:</strong> Users may choose to not use our services</li>
-                </ul>
-
-                <h2>California Privacy Rights (CCPA)</h2>
-                <p>Under the California Consumer Privacy Act (CCPA), California residents have specific rights. Since we don't collect personal information as defined by CCPA, most provisions don't apply. However:</p>
-                <ul>
-                    <li>We do not sell personal information</li>
-                    <li>We do not discriminate based on privacy choices</li>
-                    <li>You can request information about our data practices</li>
-                </ul>
-
-                <h3>Categories of Information (CCPA Disclosure)</h3>
-                <p>In the past 12 months, we have not collected personal information in the categories defined by CCPA. The only technical information we may collect does not constitute "personal information" under CCPA as it cannot identify individuals.</p>
-
-                <h2>International Data Transfers</h2>
-                <p>Since we don't collect personal data, there are no personal data transfers. Any technical information is processed in the United States where our company is located.</p>
-
-                <h2>Do Not Track</h2>
-                <p>Our mobile applications do not respond to Do Not Track signals because we don't track users. Our website does not track users across third-party websites.</p>
-
-                <h2>Third-Party Links</h2>
-                <p>Our Service may contain links to other websites. We are not responsible for the privacy practices of other sites. We encourage you to review the privacy policies of any external sites you visit.</p>
-
-                <h2>Changes to This Privacy Policy</h2>
-                <p>We may update this Privacy Policy from time to time. We will notify you of any material changes by:</p>
-                <ul>
-                    <li>Posting the new Privacy Policy on this page</li>
-                    <li>Updating the "Last Updated" date</li>
-                </ul>
-                <p>In some circumstances, we may also provide notice through our Service</p>
-                
-                <h2>Contact Us</h2>
-                <p>If you have any questions about this Privacy Policy, please contact us:</p>
-                <div class="privacy-highlight">
-                    <p><strong>AJ Whimtech LLC</strong><br>
-                    Email: AJWhimtech@gmail.com</p>
-                    
-                    <p>For privacy-related inquiries, please include "Privacy Policy" in your email subject line.</p>
-                </div>
-
-                <h2>Effective Date and Acknowledgment</h2>
-                <p>This Privacy Policy is effective as of July 8, 2025. By using our Service, you acknowledge that you have read and understood this Privacy Policy.</p>
-            </div>
-        </section>
-    </div>
-
-    <!-- Terms of Service Section -->
-       <div id="terms" class="legal-section">
-        <a href="#" onclick="goHome()" class="back-to-home">← Back to Home</a>
-        <section class="container">
-            <div class="legal-content">
-                <h1>Terms of Service</h1>
-                <p><strong>Effective Date:</strong> July 8, 2025</p>
-                <p><strong>Last Updated:</strong> July 8, 2025</p>
-
-                <h2>1. Acceptance of Terms</h2>
-                <p>By accessing or using AJ Whimtech LLC applications ("Service"), you agree to be bound by these Terms of Service ("Terms"). If you disagree with any part of these terms, you may not access the Service.</p>
-
-                <h2>2. Description of Service</h2>
-                <p>AJ Whimtech provides mobile applications for creative design and entertainment purposes.</p>
-
-                <h2>3. User Accounts</h2>
-                <p>Our apps do not require user accounts or registration. All functionality is available immediately upon download without providing any personal information.</p>
-
-                <h2>4. User Content</h2>
-                <p>All content created within our apps (designs, creations, etc.) is stored locally on your device. We do not have access to, store, or transmit any user-created content.</p>
-
-                <h2>5. Prohibited Uses</h2>
-                <p>You may not use our Service to:</p>
-                <ul>
-                    <li>Violate any laws or regulations</li>
-                    <li>Infringe on intellectual property rights</li>
-                    <li>Upload malicious code or content</li>
-                    <li>Harass or harm other users</li>
-                    <li>Attempt to gain unauthorized access to our systems</li>
-                </ul>
-
-                <h2>6. Limitation of Liability</h2>
-                <p>AJ Whimtech LLC shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of the Service.</p>
-
-                <h2>7. Termination</h2>
-                <p>Since our apps do not require accounts, there are no accounts to terminate. You may stop using the app at any time by simply uninstalling it from your device.</p>
-
-                <h2>8. Contact Information</h2>
-                <p>Questions about these Terms should be sent to us at:</p>
-                <p>AJ Whimtech LLC<br>
-                Email: AJWhimtech@gmail.com</p>
-            </div>
-        </section>
-    </div>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 AJ Whimtech LLC. All rights reserved. | 
-            <a href="#" onclick="showSection('privacy')" style="color: #4ecdc4;">Privacy Policy</a> | 
-            <a href="#" onclick="showSection('terms')" style="color: #4ecdc4;">Terms of Service</a></p>
+<section id="about" class="container">
+    <h2 class="section-title">About Us</h2>
+    <div class="about-content">
+        <div class="about-text">
+            <p>AJ Whimtech LLC is an Ohio-based company currently specializing in mobile app development.</p>
+            <p>Our mission is to transform imaginative ideas into reality.</p>
         </div>
-    </footer>
+        <div class="about-features">
+            <div class="feature">
+                <div class="feature-icon">📱</div>
+                <div>
+                    <h3>Mobile-First Design</h3>
+                    <p>Responsive, intuitive apps for iOS and Android</p>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🚀</div>
+                <div>
+                    <h3>Innovation Driven</h3>
+                    <p>A fresh and simple approach</p>
+                </div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <div>
+                    <h3>Back to the Basics</h3>
+                    <p>Easy and fun applications for kids</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <script>
-function showSection(sectionId) {
-    // Hide all sections
-    document.getElementById('home').classList.remove('active');
-    document.querySelectorAll('.legal-section').forEach(section => {
-        section.classList.remove('active');
+<section id="projects" class="container">
+    <h2 class="section-title">Current Projects</h2>
+    <div class="projects-grid">
+        <div class="project-card">
+            <h3>🚀 RocketCake App</h3>
+            <p>An innovative mobile application where users can use simple shapes to create and customize a variety of rockets, construction vehicles, or cakes.</p>
+            <p><strong>Status:</strong> In Development</p>
+            <p><strong>Platform:</strong> iOS, Android</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="container">
+    <h2 class="section-title">Get In Touch</h2>
+    <div class="contact-content">
+        <div class="contact-info">
+            <div class="contact-item">
+                <h3>🏢 Business</h3>
+                <p>AJ Whimtech LLC<br>Ohio, USA</p>
+            </div>
+            <div class="contact-item">
+                <h3>📧 Email</h3>
+                <p>AJWhimtech@gmail.com<br>(Business Inquiries)</p>
+            </div>
+            <div class="contact-item">
+                <h3>💼 Services</h3>
+                <p>Mobile App Development</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2025 AJ Whimtech LLC. All rights reserved. | 
+        <a href="privacy-policy.html" style="color: #4ecdc4;">Privacy Policy</a> | 
+        <a href="#" style="color: #4ecdc4;">Terms of Service</a></p>
+    </div>
+</footer>
+
+<script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
     });
-    
-    // Show selected section
-    if (sectionId === 'home') {
-        document.getElementById('home').classList.add('active');
-        // Show header and footer for home page
-        document.querySelector('header').style.display = 'block';
-        document.querySelector('footer').style.display = 'block';
-        // Show body background gradient
-        document.body.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
-    } else {
-        document.getElementById(sectionId).classList.add('active');
-        // Hide header and footer for legal pages
-        document.querySelector('header').style.display = 'none';
-        document.querySelector('footer').style.display = 'none';
-        // Set body background to white for legal pages
-        document.body.style.background = 'white';
-    }
-    
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
 
-// Add this new function to handle back to home navigation
-function goHome() {
-    showSection('home');
-}
-
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target && !this.getAttribute('onclick')) {
-            e.preventDefault();
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+    // Header scroll effect
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(255, 255, 255, 0.95)';
+            header.style.backdropFilter = 'blur(15px)';
+        } else {
+            header.style.background = 'rgba(255, 255, 255, 0.1)';
+            header.style.backdropFilter = 'blur(10px)';
         }
     });
-});
+</script>
+```
 
-// Header scroll effect
-window.addEventListener('scroll', () => {
-    const header = document.querySelector('header');
-    if (window.scrollY > 100) {
-        header.style.background = 'rgba(255, 255, 255, 0.95)';
-        header.style.backdropFilter = 'blur(15px)';
-    } else {
-        header.style.background = 'rgba(255, 255, 255, 0.1)';
-        header.style.backdropFilter = 'blur(10px)';
-    }
-});
-    </script>
 </body>
 </html>
